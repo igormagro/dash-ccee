@@ -1,0 +1,26 @@
+html, body{
+    margin: 0;
+    padding: 0;
+
+}
+
+#header, #footer{
+    
+    width: 100vw;
+    background-color: blue;
+    color: white;
+    padding: 8px 0 ;
+    display: grid;
+    place-content: center;
+}
+
+/* #header {
+    top:0;
+    height: 100px;
+} */
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    height: 20px;
+}
