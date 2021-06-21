@@ -9,8 +9,12 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 import plotly.graph_objects as go
 import pandas as pd
+import requests as req
+import json
 
-df = pd.read_json("data/contracts.json")[["date","companyName","MWavg","type"]].groupby(["date","companyName","type"]).sum().reset_index()
+res = json.loads(req.get("https://ccee-template-data.s3.amazonaws.com/contracts.json").content)
+
+df = pd.DataFrame(res)[["date","companyName","MWavg","type"]].groupby(["date","companyName","type"]).sum().reset_index()
 companies = sorted(list(df.companyName.unique()))
 
 
@@ -48,4 +52,4 @@ def loadChart(company):
     
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server()
