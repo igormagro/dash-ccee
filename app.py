@@ -12,7 +12,7 @@ import pandas as pd
 import requests as req
 import json
 
-res = json.loads(req.get("https://ccee-template-data.s3.amazonaws.com/contracts.json").content)
+res = json.loads(req.get("https://ccee-template-data-br.s3.amazonaws.com/contracts.json").content)
 
 df = pd.DataFrame(res)[["date","companyName","MWavg","type"]].groupby(["date","companyName","type"]).sum().reset_index()
 companies = sorted(list(df.companyName.unique()))
